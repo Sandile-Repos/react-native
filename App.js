@@ -6,24 +6,45 @@ export default function App() {
     "Open up App.js to start working on your app!"
   );
   return (
-    <View style={{ padding: 50 }}>
+    <View
+      style={{
+        padding: 50,
+        flexDirection: "row",
+        width: "80%",
+        height: 300,
+        justifyContent: "space-between",
+        alignItems: "stretch",
+      }}
+    >
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "space-between",
+          backgroundColor: "red",
+          flex: 2,
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <TextInput
-          placeholder="Course Goal"
-          style={{
-            width: "80%",
-            borderColor: "black",
-            borderWidth: 1,
-            padding: 10,
-          }}
-        />
-        <Button title="ADD" />
+        <Text>1</Text>
+      </View>
+      <View
+        style={{
+          backgroundColor: "blue",
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>2</Text>
+      </View>
+      <View
+        style={{
+          backgroundColor: "green",
+          flex: 2,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text>3</Text>
       </View>
     </View>
   );
