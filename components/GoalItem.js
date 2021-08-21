@@ -16,11 +16,14 @@ import {
 
 const GoalItem = (props) => {
   return (
-    <TouchableWithoutFeedback activeOpacity={0.8} onPress={props.onDelete}>
+    <TouchableOpacity
+      //   activeOpacity={0.8}
+      onPress={props.onDelete.bind(this, props.id)}
+    >
       <View style={styles.listItem}>
         <Text>{props.title}</Text>
       </View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 
