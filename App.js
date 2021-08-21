@@ -5,6 +5,7 @@ import {
   Text,
   TextInput,
   ScrollView,
+  FlatList,
   View,
 } from "react-native";
 
@@ -18,7 +19,11 @@ export default function App() {
 
   const addGoalHanler = () => {
     // setCourseGoals([...courseGoals, enterGoal]);
-    setCourseGoals((currentGoals) => [...currentGoals, enterGoal]); //update state based on old state
+    setCourseGoals((currentGoals) => [
+      ...currentGoals,
+      { key: Math.random().toString(), value: enterGoal },
+    ]); //update state based on old state
+    //Note: key value object is added because Flatlist expect an object but we entergGoal is just a list of strings, other it will have been just entergoal if it was an object
   };
 
   return (
@@ -32,13 +37,14 @@ export default function App() {
         />
         <Button title="ADD" onPress={addGoalHanler} />
       </View>
-      <ScrollView>
-        {courseGoals.map((goal) => (
-          <View key={goal} style={styles.listItem}>
-            <Text>{goal}</Text>
+      <FlatList
+        data={courseGoals}
+        renderItem={(itemData) => (
+          <View style={styles.listItem}>
+            <Text>{itemData.item.value}</Text>
           </View>
-        ))}
-      </ScrollView>
+        )}
+      />
     </View>
   );
 }
