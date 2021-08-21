@@ -18,7 +18,7 @@ export default function App() {
     setCourseGoals((currentGoals) => [
       ...currentGoals,
       { id: Math.random().toString(), value: goalTitle },
-    ]); //update state based on old state
+    ]);
   };
 
   return (
@@ -27,7 +27,12 @@ export default function App() {
       <FlatList
         keyExtractor={(item, index) => item.id}
         data={courseGoals}
-        renderItem={(itemData) => <GoalItem title={itemData.item.value} />}
+        renderItem={(itemData) => (
+          <GoalItem
+            onDelete={() => console.log("item deleted")}
+            title={itemData.item.value}
+          />
+        )}
       />
     </View>
   );

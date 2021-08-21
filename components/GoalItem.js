@@ -7,13 +7,20 @@ import {
   ScrollView,
   FlatList,
   View,
+  Touchable,
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  TouchableWithoutFeedback,
 } from "react-native";
 
 const GoalItem = (props) => {
   return (
-    <View style={styles.listItem}>
-      <Text>{props.title}</Text>
-    </View>
+    <TouchableWithoutFeedback activeOpacity={0.8} onPress={props.onDelete}>
+      <View style={styles.listItem}>
+        <Text>{props.title}</Text>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
