@@ -6,8 +6,13 @@ import GoalInput from "./components/GoalInput";
 export default function App() {
   const [courseGoals, setCourseGoals] = useState([]);
   const [isAddMode, setIsAddMode] = useState(false);
+  console.log("RE_RENDERING COMPONENT");
+  console.log(courseGoals);
 
   const addGoalHandler = (goalTitle) => {
+    if (goalTitle.length === 0) {
+      return;
+    }
     setCourseGoals((currentGoals) => [
       ...currentGoals,
       { id: Math.random().toString(), value: goalTitle },
@@ -16,6 +21,8 @@ export default function App() {
   };
 
   const removeGoalHandler = (goalId) => {
+    console.log("TO BE DELETED: " + goalId);
+    console.log(courseGoals);
     setCourseGoals((currentGoals) => {
       return currentGoals.filter((goal) => goal.id !== goalId);
     });
