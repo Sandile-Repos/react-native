@@ -21,7 +21,7 @@ export default function App() {
     // setCourseGoals([...courseGoals, enterGoal]);
     setCourseGoals((currentGoals) => [
       ...currentGoals,
-      { key: Math.random().toString(), value: enterGoal },
+      { id: Math.random().toString(), value: enterGoal },
     ]); //update state based on old state
     //Note: key value object is added because Flatlist expect an object but we entergGoal is just a list of strings, other it will have been just entergoal if it was an object
   };
@@ -37,7 +37,8 @@ export default function App() {
         />
         <Button title="ADD" onPress={addGoalHanler} />
       </View>
-      <FlatList
+      <FlatList //use flatlist for very long list that will go beyond you screen
+        keyExtractor={(item, index) => item.id} //keyExtractor is added is name of key in object is not key
         data={courseGoals}
         renderItem={(itemData) => (
           <View style={styles.listItem}>
