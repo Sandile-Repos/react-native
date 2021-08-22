@@ -13,6 +13,7 @@ import {
 
 import Card from "../components/Card";
 import Input from "../components/Input";
+import NumberContainer from "../components/NumberContainer";
 import colors from "../constants/colors";
 
 const StartGamescreen = (props) => {
@@ -39,10 +40,17 @@ const StartGamescreen = (props) => {
     setConfirmed(true);
     setEnteredValue("");
     setSelectedNumber(chosenNumber);
+    Keyboard.dismiss();
   };
   let confirmedOutput;
   if (confirmed) {
-    confirmedOutput = <Text>Choosen Number: {selectedNumber}</Text>;
+    confirmedOutput = (
+      <Card style={styles.summerContainer}>
+        <Text>You Selected </Text>
+        <NumberContainer>{selectedNumber}</NumberContainer>
+        <Button title="START GAME" />
+      </Card>
+    );
   }
   return (
     // Keyboard is an Api(not component) from react native that is called to dismiss keybord if you press outside of input or keybord
@@ -120,5 +128,9 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     textAlign: "center",
+  },
+  summerContainer: {
+    marginTop: 20,
+    alignItems: "center",
   },
 });
