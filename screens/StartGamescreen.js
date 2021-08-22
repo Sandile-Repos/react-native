@@ -16,11 +16,30 @@ import colors from "../constants/colors";
 
 const StartGamescreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
+  const [selectedNumber, setSelectedNumber] = useState("");
 
   const numberInputHandler = (InputText) => {
     setEnteredValue(InputText.replace(/[^0-9]/g, "")); //Validation to only allow numbers on input
   };
 
+  const resetInputHandler = () => {
+    setEnteredValue("");
+    setConfirmed(false);
+  };
+  const confirmInputHandler = () => {
+    const chosenNumber = parseInt(enteredValue);
+    if (chosenNumber === NaN || chosenNumber <= 0 || chosenNumber > 99) {
+      return;
+    }
+    setConfirmed(true);
+    setEnteredValue("");
+    setSelectedNumber(chosenNumber);
+  };
+  let confirmedOutput;
+  if (confirmed) {
+    confirmedOutput = <Text>Choosen Number: {selectedNumber}</Text>;
+  }
   return (
     // Keyboard is an Api(not component) from react native that is called to dismiss keybord if you press outside of input or keybord
     <TouchableWithoutFeedback
@@ -49,6 +68,7 @@ const StartGamescreen = (props) => {
                 title={"Reset"}
                 onPress={() => {}}
                 color={colors.accent}
+                onPress={resetInputHandler}
               />
             </View>
             <View style={styles.button}>
@@ -56,10 +76,12 @@ const StartGamescreen = (props) => {
                 title={"confirm"}
                 onPress={() => {}}
                 color={colors.primary}
+                onPress={confirmInputHandler}
               />
             </View>
           </View>
         </Card>
+        {confirmedOutput}
       </View>
     </TouchableWithoutFeedback>
   );
