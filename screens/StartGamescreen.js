@@ -40,6 +40,7 @@ const StartGamescreen = (props) => {
     setSelectedNumber(chosenNumber);
     Keyboard.dismiss();
   };
+
   let confirmedOutput;
   if (confirmed) {
     confirmedOutput = (
@@ -53,6 +54,7 @@ const StartGamescreen = (props) => {
       </Card>
     );
   }
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     marginVertical: 10,
+    fontFamily: "open-sans-bold",
   },
   inputContainer: {
     width: 300,
