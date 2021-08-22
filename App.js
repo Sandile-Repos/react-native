@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import Header from "./components/Header";
-import StartGamescreen from "./components/screens/StartGamescreen";
+import StartGamescreen from "./screens/StartGamescreen";
 
 export default function App() {
   return (
