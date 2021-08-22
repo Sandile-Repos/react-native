@@ -6,5 +6,13 @@
 
 import {AppLoading} from 'expo'
 
-npm install expo-app-loading
-import AppLoading fro, 'expo-appploading'
+1. expo install expo-app-loading (preffered)
+
+2. npm install expo-app-loading
+   import AppLoading from, 'expo-app-loading'
+
+###### Expo-fonts
+
+1. npm install --save expo-font
+
+2. expo install expo-font (preffered)
