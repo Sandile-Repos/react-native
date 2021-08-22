@@ -3,8 +3,6 @@ import {
   Button,
   StyleSheet,
   Text,
-  TextInput,
-  TouchableNativeFeedback,
   TouchableWithoutFeedback,
   View,
   Keyboard,
@@ -48,12 +46,14 @@ const StartGamescreen = (props) => {
       <Card style={styles.summerContainer}>
         <Text>You Selected </Text>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button title="START GAME" />
+        <Button
+          title="START GAME"
+          onPress={() => props.onStartGame(selectedNumber)}
+        />
       </Card>
     );
   }
   return (
-    // Keyboard is an Api(not component) from react native that is called to dismiss keybord if you press outside of input or keybord
     <TouchableWithoutFeedback
       onPress={() => {
         Keyboard.dismiss();
@@ -68,8 +68,7 @@ const StartGamescreen = (props) => {
             blurOnSubmit
             autoCapitalize="none"
             autoCorrect={false}
-            keyboardType="numeric" //number can also include period or comma - for both devices
-            // keyboardType="numer-pad" //number only, not including period or comma - ios only
+            keyboardType="numeric"
             maxLength={2}
             onChangeText={numberInputHandler}
             value={enteredValue}

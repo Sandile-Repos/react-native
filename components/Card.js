@@ -11,12 +11,7 @@ export default Card;
 
 const styles = StyleSheet.create({
   card: {
-    // all  these shadow properties are for IOS
-    // shadowColor: "black",
-    // shadowOffset: { width: 0, height: 2 },
-    // shadowRadius:6,
-    // shadowOpacity:0.26,
-    elevation: 8, //for andriod - it based on material design
+    elevation: 8,
     backgroundColor: "white",
     padding: 20,
     borderRadius: 10,
