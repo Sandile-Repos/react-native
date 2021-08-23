@@ -77,8 +77,8 @@ const GameScreen = (props) => {
           <Ionicons name="md-add" size={24} color="white" />
         </MainButton>
       </Card>
-      <View style={styles.list}>
-        <ScrollView>
+      <View style={styles.listContainer}>
+        <ScrollView contentContainerStyle={styles.list}>
           {passGuesses.map((guess, index) =>
             renderListItem(guess, passGuesses.length - index)
           )}
@@ -103,9 +103,14 @@ const styles = StyleSheet.create({
     width: 400,
     maxWidth: "90%",
   },
-  list: {
+  listContainer: {
     width: "80%",
-    flex: 1, // so list can scroll
+    flex: 1, // so list can scroll in andriod
+  },
+  list: {
+    flexGrow: 1, // the list will now scroll showing recent and oldest guess
+    alignItems: "center",
+    justifyContent: "flex-end", // start from the bottom up
   },
   listItem: {
     borderColor: "#ccc",
@@ -115,5 +120,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     flexDirection: "row",
     justifyContent: "space-between",
+    width: "60%",
   },
 });
