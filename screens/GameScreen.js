@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Button, StyleSheet, Text, View, Alert } from "react-native";
 import Card from "../components/Card";
+import MainButton from "../components/MainButton";
 import NumberContainer from "../components/NumberContainer";
 import defaultStyles from "../constants/default-styles";
 
@@ -8,11 +9,11 @@ const generateRandomBetween = (min, max, exclude) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   const rndNum = Math.floor(Math.random() * (max - min) + min);
-  if (rndNum === exclude) {
-    return generateRandomBetween(min, max, exclude);
-  } else {
-    return rndNum;
-  }
+  // if (rndNum === exclude) {
+  //   return generateRandomBetween(min, max, exclude);
+  // } else {
+  return rndNum;
+  // }
 };
 
 const GameScreen = (props) => {
@@ -37,7 +38,7 @@ const GameScreen = (props) => {
       (direction === "lower" && currentGuess < props.userChoice) ||
       (direction === "greater" && currentGuess > props.userChoice)
     ) {
-      Alert.alert("Don't lie!", "Cheating is not allowed", [
+      Alert.alert("Your Guess is wrong!", "Please try again", [
         { text: "Sorry!", style: "cancel" },
       ]);
       return;
@@ -60,11 +61,12 @@ const GameScreen = (props) => {
       <Text style={defaultStyles.title}>Oponents Guessed</Text>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card style={styles.buttonContainer}>
-        <Button title="LOWER" onPress={nextGuessHandler.bind(this, "lower")} />
-        <Button
-          title="GREATER"
-          onPress={nextGuessHandler.bind(this, "greater")}
-        />
+        <MainButton onPress={nextGuessHandler.bind(this, "lower")}>
+          LOWER
+        </MainButton>
+        <MainButton onPress={nextGuessHandler.bind(this, "greater")}>
+          GREATER
+        </MainButton>
       </Card>
     </View>
   );
@@ -82,7 +84,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 20,
-    width: 300,
-    maxWidth: "80%",
+    width: 400,
+    maxWidth: "90%",
   },
 });
