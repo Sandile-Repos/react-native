@@ -3,6 +3,7 @@ import { Button, Image, StyleSheet, Text, View } from "react-native";
 
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
+import colors from "../constants/colors";
 
 const GameOverScreen = (props) => {
   return (
@@ -10,17 +11,22 @@ const GameOverScreen = (props) => {
       <TitleText>The game is over</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          fadeDuration={1000}
-          // source={require("../assets/success.png")}
-          source={{
-            uri: "https://static.euronews.com/articles/stories/05/26/61/88/400x225_cmsv2_7fce538a-0a0e-5133-bf70-24ec472d5618-5266188.jpg",
-          }}
+          source={require("../assets/success.png")}
+          // source={{
+          //   uri: "https://static.euronews.com/articles/stories/05/26/61/88/400x225_cmsv2_7fce538a-0a0e-5133-bf70-24ec472d5618-5266188.jpg",
+          // }}
           style={styles.image}
           resizeMode="cover"
         />
       </View>
-      <BodyText>Number of rounds: {props.roundsNumber}</BodyText>
-      <BodyText>Number was: {props.userNumber}</BodyText>
+      <View style={styles.resultContainer}>
+        <BodyText style={styles.resultText}>
+          Your phone needed just{" "}
+          <Text style={styles.highlight}>{props.roundsNumber}</Text> rounds to
+          guess the number{" "}
+          <Text style={styles.highlight}>{props.userNumber}</Text>
+        </BodyText>
+      </View>
       <Button title="New Game" onPress={props.onRestart} />
     </View>
   );
@@ -47,5 +53,19 @@ const styles = StyleSheet.create({
     //required epecially for network(from web) images
     width: "100%",
     height: "100%",
+  },
+  highlight: {
+    color: colors.primary,
+    fontFamily: "open-sans-bold",
+  },
+
+  resultContainer: {
+    marginHorizontal: 30,
+    marginVertical: 15,
+  },
+
+  resultText: {
+    textAlign: "center",
+    fontSize: 20,
   },
 });
