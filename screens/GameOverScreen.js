@@ -10,7 +10,11 @@ const GameOverScreen = (props) => {
       <TitleText>The game is over</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../assets/success.png")}
+          fadeDuration={1000}
+          // source={require("../assets/success.png")}
+          source={{
+            uri: "https://static.euronews.com/articles/stories/05/26/61/88/400x225_cmsv2_7fce538a-0a0e-5133-bf70-24ec472d5618-5266188.jpg",
+          }}
           style={styles.image}
           resizeMode="cover"
         />
@@ -40,6 +44,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
   },
   image: {
+    //required epecially for network(from web) images
     width: "100%",
     height: "100%",
   },
