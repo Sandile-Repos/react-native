@@ -16,3 +16,9 @@ import {AppLoading} from 'expo'
 1. npm install --save expo-font
 
 2. expo install expo-font (preffered)
+
+###### App Orientation - app.json
+
+"orientation": "portrait",
+"orientation": landscape",
+"orientation": "default",
