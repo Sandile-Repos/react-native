@@ -24,3 +24,17 @@ import {AppLoading} from 'expo'
 "orientation": "default",
 
 ###### install (expo-screen-orientation)
+
+###### npm install react-navigation
+
+###### npm install --save react-navigation@latest
+
+To intall latest version of react
+
+###### expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+###### npm install --save react-navigation-stack
+
+###### npm install --save react-navigation-tabs
+
+###### npm install --save react-navigation-drawer
