@@ -11,6 +11,8 @@ const CategoriesScreen = (props) => {
         onPress={() => {
           props.navigation.navigate({ routeName: "CategoryMeals" });
           // props.navigation.navigate('CategoryMeals')
+          // props.navigation.push('CategoryMeals') //used where you want to be in the same screen but diff parts eg different area(eg diff folder in a root directory)
+          //props.navigation.replace("CategoryMeals" ); //replacing and not going through the stack, so you get no back button since stack is empty(can be used eg when user signs in and not go back to login screen )
         }}
       />
     </View>
