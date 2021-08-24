@@ -9,6 +9,7 @@ import {
   Dimensions,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import ScreenOrientation from "expo-screen-orientation";
 
 import Card from "../components/Card";
 import MainButton from "../components/MainButton";
@@ -35,6 +36,7 @@ const renderListItem = (listLength, itemData) => (
 );
 
 const GameScreen = (props) => {
+  //ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT); //LOCK SCREEN TO POSITION WHEN REACHING CERTAIN POINT
   const initialGuess = generateRandomBetween(1, 100, props.userChoice);
   const [currentGuess, setCurrrentGuess] = useState(initialGuess);
   const [pastGuesses, setPasrGuesses] = useState([initialGuess.toString()]);

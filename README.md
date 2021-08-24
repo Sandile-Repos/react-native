@@ -22,3 +22,5 @@ import {AppLoading} from 'expo'
 "orientation": "portrait",
 "orientation": landscape",
 "orientation": "default",
+
+###### install (expo-screen-orientation)
