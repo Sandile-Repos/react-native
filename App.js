@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { View, Text } from "react-native";
 import * as Font from "expo-font";
-import AppLoading from "expo-app-loading"; //prolong screen until certain task is done
+import AppLoading from "expo-app-loading";
 
-import Header from "./components/Header";
-import StartGamescreen from "./screens/StartGamescreen";
-import GameScreen from "./screens/GameScreen";
-import GameOverScreen from "./screens/GameOverScreen";
-
-const fetchfonts = () => {
+const fetchFonts = () => {
   return Font.loadAsync({
     "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
     "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
@@ -16,59 +11,20 @@ const fetchfonts = () => {
 };
 
 export default function App() {
-  const [userNumber, setUserNumber] = useState("");
-  const [guessRounds, setGuessRounds] = useState(0);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [fontLoaded, setFontLoaded] = useState(false);
 
-  if (!dataLoaded) {
+  if (!fontLoaded) {
     return (
       <AppLoading
-        startAsync={fetchfonts}
-        onFinish={() => setDataLoaded(true)}
+        startAsync={fetchFonts}
+        onFinish={() => setFontLoaded(true)}
         onError={(err) => console.log(err)}
       />
     );
   }
-
-  const configureNewGameHandler = () => {
-    setGuessRounds(0);
-    setUserNumber(null);
-  };
-
-  const startGameHandler = (selectedNumber) => {
-    setUserNumber(selectedNumber);
-  };
-
-  const gameOverHandler = (numOfRounds) => {
-    setGuessRounds(numOfRounds);
-  };
-
-  let content = <StartGamescreen onStartGame={startGameHandler} />;
-
-  if (userNumber && guessRounds <= 0) {
-    content = (
-      <GameScreen onGameOver={gameOverHandler} userChoice={userNumber} />
-    );
-  } else if (guessRounds > 0) {
-    content = (
-      <GameOverScreen
-        roundsNumber={guessRounds}
-        userNumber={userNumber}
-        onRestart={configureNewGameHandler}
-      />
-    );
-  }
-
   return (
-    <SafeAreaView style={styles.screen}>
-      <Header title={"Guess a Number"} />
-      {content}
-    </SafeAreaView>
+    <View>
+      <Text>Hello</Text>
+    </View>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-});
