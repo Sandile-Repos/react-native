@@ -4,7 +4,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  TouchableNativeFeedback,
   Platform,
 } from "react-native";
 
@@ -16,23 +15,17 @@ const MainButton = (props) => {
     ButtonComponent = TouchableNativeFeedback;
   }
   return (
-    <View style={styles.ButtonContainer}>
-      <ButtonComponent activeOpacity={0.6} onPress={props.onPress}>
-        <View style={styles.button}>
-          <Text style={styles.buttonText}>{props.children}</Text>
-        </View>
-      </ButtonComponent>
-    </View>
+    <TouchableOpacity activeOpacity={0.6} onPress={props.onPress}>
+      <View style={styles.button}>
+        <Text style={styles.buttonText}>{props.children}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 export default MainButton;
 
 const styles = StyleSheet.create({
-  ButtonContainer: {
-    borderRadius: 25,
-    overflow: "hidden",
-  },
   button: {
     backgroundColor: colors.primary,
     paddingVertical: 12,
