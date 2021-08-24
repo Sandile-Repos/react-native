@@ -6,7 +6,15 @@ import TitleText from "./TitleText";
 
 const Header = (props) => {
   return (
-    <View style={styles.header}>
+    <View
+      style={{
+        ...styles.headerBase,
+        ...Platform.select({
+          ios: styles.headerIOS,
+          android: styles.headerAndriod,
+        }),
+      }}
+    >
       <TitleText style={styles.title}>{props.title}</TitleText>
     </View>
   );
@@ -15,15 +23,22 @@ const Header = (props) => {
 export default Header;
 
 const styles = StyleSheet.create({
-  header: {
+  headerBase: {
     width: "100%",
     height: 90,
     paddingTop: 36,
-    backgroundColor: Platform.OS === "android" ? colors.primary : "white",
     alignItems: "center",
     justifyContent: "center",
-    borderBottomColor: Platform.OS === "ios" ? "#ccc" : "transparent",
-    borderBottomWidth: Platform.OS === "ios" ? 1 : 0,
+  },
+  headerIOS: {
+    backgroundColor: "white",
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+  },
+  headerAndriod: {
+    backgroundColor: colors.primary,
+    borderBottomColor: "transparent",
+    borderBottomWidth: 0,
   },
   title: {
     color: Platform.OS === "ios" ? colors.primary : "white",
