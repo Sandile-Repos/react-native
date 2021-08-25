@@ -1,28 +1,30 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { View, Text, Button, StyleSheet } from "react-native";
 
-const CategoryMealsScreen = (props) => {
+const CategoryMealScreen = (props) => {
   return (
-    <View styles={styles.screen}>
-      <Text>The Category Meals Screen!</Text>
-      <Button
-        title="Go to Meal Details"
-        onPress={() => {
-          props.navigation.navigate({ routeName: "MealDetail" });
-          // props.navigation.navigate('CategoryMeals') // alternative
-        }}
-      />
-      <Button
-        title="Go Back"
-        onPress={() => {
-          props.navigation.goBack();
-          // props.navigation.pop(); only avalable in stack navigator while gobackis also available
-        }}
-      />
+    <View style={styles.screen}>
+      <Text>The Category Meal Screen!</Text>
+      <View>
+        <Button
+          title="Go to Details"
+          onPress={() => {
+            props.navigation.navigate({
+              routeName: "MealDetail",
+            });
+          }}
+        />
+        <View style={{ height: 20 }}></View>
+        <Button
+          title="Go Back"
+          onPress={() => {
+            props.navigation.pop();
+          }}
+        />
+      </View>
     </View>
   );
 };
-export default CategoryMealsScreen;
 
 const styles = StyleSheet.create({
   screen: {
@@ -31,3 +33,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+export default CategoryMealScreen;
