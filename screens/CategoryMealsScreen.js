@@ -31,6 +31,22 @@ const CategoryMealScreen = (props) => {
   );
 };
 
+// selectedCategory.title is available but inside component function and cannot be accessed on navigationOptions
+// if its an object with static hard coded values
+// CategoryMealScreen.navigationOptions = {
+//   headerTitle:
+// }
+
+//But can also be a function if you need dynamic config that depends on changing data
+CategoryMealScreen.navigationOptions = (navigationData) => {
+  const catId = navigationData.navigation.getParam("categoryId");
+  // console.log(catId);
+  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId);
+  return {
+    headerTitle: selectedCategory.title,
+  };
+};
+
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
