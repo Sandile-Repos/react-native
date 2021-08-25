@@ -22,6 +22,8 @@ const MealsNavigator = createStackNavigator(
     MealDetail: MealDetailsScreen,
   },
   {
+    // mode: "modal",
+    //initialRouteName: "MealDetail", //default screen it will route to instead of the first one in the stack, note you cant go back if your initial screen is the last screen on the stack
     defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
