@@ -10,8 +10,15 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailsScreen from "../screens/MealDetailsScreen";
-import FavouriteScreen from "../screens/FavouriteScreen";
+import FavouritesScreen from "../screens/FavouritesScreen";
 import Colors from "../constants/Colors";
+
+const defaultStackNavOptions = {
+  headerStyle: {
+    backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
+  },
+  headerTintColor: Platform.OS === "android" ? "white" : Colors.primaryColor,
+};
 
 const MealsNavigator = createStackNavigator(
   {
@@ -29,13 +36,17 @@ const MealsNavigator = createStackNavigator(
   {
     // mode: "modal",
     //initialRouteName: "MealDetail", //default screen it will route to instead of the first one in the stack, note you cant go back if your initial screen is the last screen on the stack
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: Platform.OS === "android" ? Colors.primaryColor : "",
-      },
-      headerTintColor:
-        Platform.OS === "android" ? "white" : Colors.primaryColor,
-    },
+    defaultNavigationOptions: defaultStackNavOptions,
+  }
+);
+
+const FavNavigator = createStackNavigator(
+  {
+    Favourites: FavouritesScreen,
+    MealDetail: MealDetailsScreen,
+  },
+  {
+    defaultNavigationOptions: defaultStackNavOptions,
   }
 );
 
@@ -53,7 +64,7 @@ const tabScreenConfig = {
     },
   },
   Favourites: {
-    screen: FavouriteScreen,
+    screen: FavNavigator,
     navigationOptions: {
       tabBarIcon: (tabInfo) => {
         return <Ionicons name="ios-star" size={25} color={tabInfo.tintColor} />;
