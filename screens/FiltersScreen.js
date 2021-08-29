@@ -38,7 +38,7 @@ const FiltersScreen = (props) => {
 
   useEffect(() => {
     navigation.setParams({ save: saveFilters });
-  }, [saveFilters, navigation]);
+  }, [saveFilters]);
 
   return (
     <View styles={styles.screen}>
@@ -96,9 +96,9 @@ FiltersScreen.navigationOptions = (navData) => {
           title="Save"
           iconName="ios-save"
           // onPress={() => {
-          //   navData.navigation.getParams("save");
+          //   navData.navigation.getParam("save");
           // }}
-          onPress={navData.navigation.getParams("save")}
+          onPress={navData.navigation.getParam("save")}
         />
       </HeaderButtons>
     ),
