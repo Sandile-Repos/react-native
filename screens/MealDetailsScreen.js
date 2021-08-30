@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   ScrollView,
   View,
@@ -25,7 +25,10 @@ const MealDetailScreen = (props) => {
   const availableMeals = useSelector((state) => state.meals.meals);
   const mealId = props.navigation.getParam("mealId");
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
-
+  // 1st approach - when passsing data to navgation option
+  // useEffect(() => {
+  //   props.navigation.setParams({ mealTitle: selectedMeal.title });
+  // }, [selectedMeal]);
   return (
     <ScrollView>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
@@ -42,25 +45,19 @@ const MealDetailScreen = (props) => {
       {selectedMeal.steps.map((step) => (
         <ListItem key={step}>{step}</ListItem>
       ))}
-
-      {/* <View style={styles.screen}>
-        <Text>{selectedMeal.title}</Text>
-        <Button
-          title="Go Back to Categories"
-          onPress={() => {
-            props.navigation.popToTop();
-          }}
-        />
-      </View> */}
     </ScrollView>
   );
 };
 
 MealDetailScreen.navigationOptions = (navigationData) => {
   const mealId = navigationData.navigation.getParam("mealId");
-  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  // 1st approach when adding data in nav option is to pass setParam on useffect than getParam
+  // 2nd approach when adding data in nav option is to pass data on param component in advance(MealList) than getParam
+  const mealTitle = navigationData.navigation.getParam("mealTitle");
+  // const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+
   return {
-    headerTitle: selectedMeal.title,
+    headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
