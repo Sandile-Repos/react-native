@@ -18,6 +18,12 @@ const ListItem = (props) => {
 const MealDetailScreen = (props) => {
   const availableMeals = useSelector((state) => state.meals.meals);
   const mealId = props.navigation.getParam("mealId");
+  const currentMealIsFavourite = useSelector((state) =>
+    //  tests whether at least one element in the array passes the test implemented by the provided function
+    //So we are finding out if meal of passed id is part of favourite and returning it if its part of it
+    state.meals.favouriteMeals.some((meal) => meal.id === mealId)
+  );
+
   const selectedMeal = availableMeals.find((meal) => meal.id === mealId);
   // 1st approach - when passsing data to navgation option
   // useEffect(() => {
@@ -34,6 +40,10 @@ const MealDetailScreen = (props) => {
   useEffect(() => {
     props.navigation.setParams({ toggleFav: toggleFavouriteHandler });
   }, [toggleFavouriteHandler]);
+
+  useEffect(() => {
+    props.navigation.setParams({ isFav: currentMealIsFavourite });
+  }, [currentMealIsFavourite]);
 
   return (
     <ScrollView>
@@ -62,17 +72,17 @@ MealDetailScreen.navigationOptions = (navigationData) => {
   const mealTitle = navigationData.navigation.getParam("mealTitle");
   // const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   const toggleFavourite = navigationData.navigation.getParam("toggleFav");
+  const isFavourite = navigationData.navigation.getParam("isFav");
 
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item title="Favorite" iconName="ios-star" onPress={toggleFavourite} />
-        {/* <Item
+        <Item
           title="Favorite"
-          iconName="ios-star-outline"
+          iconName={isFavourite ? "ios-star" : "ios-star-outline"}
           onPress={toggleFavourite}
-        /> */}
+        />
       </HeaderButtons>
     ),
   };
