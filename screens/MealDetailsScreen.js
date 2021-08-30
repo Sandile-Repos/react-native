@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
-import {
-  ScrollView,
-  View,
-  Image,
-  Text,
-  Button,
-  StyleSheet,
-} from "react-native";
+import React, { useEffect, useCallback } from "react";
+import { ScrollView, View, Image, Text, StyleSheet } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import CustomHeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
+import { toggleFavourite } from "../store/actions/meals";
 
 const ListItem = (props) => {
   return (
@@ -29,6 +23,18 @@ const MealDetailScreen = (props) => {
   // useEffect(() => {
   //   props.navigation.setParams({ mealTitle: selectedMeal.title });
   // }, [selectedMeal]);
+
+  const dispatch = useDispatch();
+
+  const toggleFavouriteHandler = useCallback(() => {
+    //  dispatch(toggleFavourite(selectedMealId.id)) or
+    dispatch(toggleFavourite(mealId));
+  }, [dispatch, mealId]);
+
+  useEffect(() => {
+    props.navigation.setParams({ toggleFav: toggleFavouriteHandler });
+  }, [toggleFavouriteHandler]);
+
   return (
     <ScrollView>
       <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
@@ -50,26 +56,23 @@ const MealDetailScreen = (props) => {
 };
 
 MealDetailScreen.navigationOptions = (navigationData) => {
-  const mealId = navigationData.navigation.getParam("mealId");
+  // const mealId = navigationData.navigation.getParam("mealId");
   // 1st approach when adding data in nav option is to pass setParam on useffect than getParam
   // 2nd approach when adding data in nav option is to pass data on param component in advance(MealList) than getParam
   const mealTitle = navigationData.navigation.getParam("mealTitle");
   // const selectedMeal = MEALS.find((meal) => meal.id === mealId);
+  const toggleFavourite = navigationData.navigation.getParam("toggleFav");
 
   return {
     headerTitle: mealTitle,
     headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
-        <Item
-          title="Favorite"
-          iconName="ios-star"
-          onPress={() => console.log("Favourite")}
-        />
-        <Item
+        <Item title="Favorite" iconName="ios-star" onPress={toggleFavourite} />
+        {/* <Item
           title="Favorite"
           iconName="ios-star-outline"
-          onPress={() => console.log("Favourite")}
-        />
+          onPress={toggleFavourite}
+        /> */}
       </HeaderButtons>
     ),
   };
