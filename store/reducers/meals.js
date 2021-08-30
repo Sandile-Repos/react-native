@@ -33,7 +33,7 @@ const mealsReducer = (state = initialState, action) => {
         if (appliedFilters.lactoseFree && !meal.isLactoseFree) {
           return false;
         }
-        if (appliedFilters.vegetarianFree && !meal.isVegetarianFree) {
+        if (appliedFilters.vegetarian && !meal.isVegetarian) {
           return false;
         }
         if (appliedFilters.vegan && !meal.isVegan) {
