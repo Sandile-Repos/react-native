@@ -11,7 +11,6 @@ const CartScreen = (props) => {
   const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
   const cartItems = useSelector((state) => {
     const transformedCartItems = [];
-    // console.log(state.cart.items);
     for (const key in state.cart.items) {
       transformedCartItems.push({
         productId: key,
@@ -25,27 +24,8 @@ const CartScreen = (props) => {
       a.productId > b.productId ? 1 : -1
     );
   });
-
-  // console.log(state.cart.items); inside cartItems variable
-  //   Object {
-  //   "p1": CartItem {
-  //     "productPrice": 29.99,
-  //     "productTitle": "Red Shirt",
-  //     "quantity": 1,
-  //     "sum": 29.99,
-  //   },
-  // }
-  // console.log(cartItems);
-  // Array [
-  //   Object {
-  //     "productId": "p1",
-  //     "productPrice": 29.99,
-  //     "productTitle": "Red Shirt",
-  //     "quantity": 1,
-  //     "sum": 29.99,
-  //   },
-  // ]
   const dispatch = useDispatch();
+
   return (
     <View style={styles.screen}>
       <View style={styles.summary}>
@@ -57,9 +37,9 @@ const CartScreen = (props) => {
           color={Colors.accent}
           title="Order Now"
           disabled={cartItems.length === 0}
-          onPress={() =>
-            dispatch(ordersActions.addOrder(cartItems, cartTotalAmount))
-          }
+          onPress={() => {
+            dispatch(ordersActions.addOrder(cartItems, cartTotalAmount));
+          }}
         />
       </View>
       <FlatList
@@ -70,14 +50,18 @@ const CartScreen = (props) => {
             quantity={itemData.item.quantity}
             title={itemData.item.productTitle}
             amount={itemData.item.sum}
-            onRemove={() =>
-              dispatch(cartActions.removeFromCart(itemData.item.productId))
-            }
+            onRemove={() => {
+              dispatch(cartActions.removeFromCart(itemData.item.productId));
+            }}
           />
         )}
       />
     </View>
   );
+};
+
+CartScreen.navigationOptions = {
+  headerTitle: "Your Cart",
 };
 
 const styles = StyleSheet.create({
