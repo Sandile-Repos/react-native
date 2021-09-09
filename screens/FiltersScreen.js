@@ -12,8 +12,9 @@ const FilterSwitch = (props) => {
     <View style={styles.filterContainer}>
       <Text>{props.label}</Text>
       <Switch
-        trackColor={{ true: Colors.primaryColor }}
-        thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""}
+        trackColor={{ false: "#767577", true: Colors.primaryColor }}
+        // thumbColor={Platform.OS === "android" ? Colors.primaryColor : ""}
+        thumbColor={props.state ? Colors.primaryColor : "white"}
         value={props.state}
         onValueChange={props.onChange}
       />

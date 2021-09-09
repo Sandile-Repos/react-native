@@ -139,6 +139,9 @@ const MainNavigator = createDrawerNavigator(
       labelStyle: {
         fontFamily: "open-sans-bold",
       },
+      itemsContainerStyle: {
+        marginVertical: 30,
+      },
     },
   }
 );
