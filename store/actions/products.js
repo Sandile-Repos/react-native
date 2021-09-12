@@ -13,6 +13,15 @@ export const fetchProducts = () => {
     );
 
     const resData = await response.json();
+    //     console.log(resData);
+    //     Object {
+    //   "-MjOqpNJLEPAP5jMQwll": Object {
+    //     "description": "A very good quality white shirt",
+    //     "imageUrl": "https://cdn.pixabay.com/photo/2017/01/13/04/56/blank-1976334_960_720.png",
+    //     "price": 39.99,
+    //     "title": "A White Shirt",
+    //   },
+    // }
     const loadedProducts = [];
 
     for (const key in resData) {
