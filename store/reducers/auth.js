@@ -1,4 +1,4 @@
-// import { LOGIN, SIGNUP } from "../actions/auth";
+import { LOGOUT } from "../actions/auth";
 import { AUTHENTICATE } from "../actions/auth";
 
 const initialState = {
