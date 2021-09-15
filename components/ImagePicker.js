@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Button, Image, Text, StyleSheet, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import * as Permissions from "expo-permissions";
+// import * as Permissions from "expo-permissions";
 import * as Camera from "expo-camera";
 
 import Colors from "../constants/Colors";
@@ -34,7 +34,7 @@ const ImgPicker = (props) => {
     });
     console.log(image);
     setPickedImage(image.uri);
-    ImagePicker.launchCameraAsync();
+    props.onImageTaken(image.uri);
   };
 
   return (
