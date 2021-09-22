@@ -16,7 +16,7 @@ import LocationPicker from "../components/LocationPicker";
 
 const NewPlaceScreen = (props) => {
   const [titleValue, setTitleValue] = useState("");
-  const [selectedImage, setSlectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState();
 
   const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ const NewPlaceScreen = (props) => {
   };
 
   const imageTakenHandler = (imagePath) => {
-    setSlectedImage(imagePath);
+    setSelectedImage(imagePath);
   };
 
   const savePlaceHandler = () => {
