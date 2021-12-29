@@ -48,7 +48,8 @@ const CartScreen = (props) => {
         <Text style={styles.summaryText}>
           Total:{" "}
           <Text style={styles.amount}>
-            ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
+            {"$"}
+            {Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
           </Text>
         </Text>
         {isLoading ? (
@@ -81,7 +82,7 @@ const CartScreen = (props) => {
   );
 };
 
-CartScreen.navigationOptions = {
+export const screenOptions = {
   headerTitle: "Your Cart",
 };
 

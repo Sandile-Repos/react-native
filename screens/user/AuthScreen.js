@@ -7,6 +7,7 @@ import {
   Button,
   ActivityIndicator,
   Alert,
+  Platform,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useDispatch } from "react-redux";
@@ -82,7 +83,7 @@ const AuthScreen = (props) => {
     setIsLoading(true);
     try {
       await dispatch(action);
-      props.navigation.navigate("Shop");
+      // props.navigation.navigate("Shop");
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
@@ -103,7 +104,7 @@ const AuthScreen = (props) => {
 
   return (
     <KeyboardAvoidingView
-      behavior="padding"
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={50}
       style={styles.screen}
     >
@@ -133,26 +134,30 @@ const AuthScreen = (props) => {
               onInputChange={inputChangeHandler}
               initialValue=""
             />
-            <View style={styles.buttonContainer}>
-              {isLoading ? (
+            {isLoading ? (
+              <View style={styles.activityIndicatorStyle}>
                 <ActivityIndicator size="small" color={Colors.primary} />
-              ) : (
-                <Button
-                  title={isSignup ? "Sign Up" : "Login"}
-                  color={Colors.primary}
-                  onPress={authHandler}
-                />
-              )}
-            </View>
-            <View style={styles.buttonContainer}>
-              <Button
-                title={`Switch to ${isSignup ? "Login" : "Sign Up"}`}
-                color={Colors.accent}
-                onPress={() => {
-                  setIsSignup((prevState) => !prevState);
-                }}
-              />
-            </View>
+              </View>
+            ) : (
+              <View>
+                <View style={styles.buttonContainer}>
+                  <Button
+                    title={isSignup ? "Sign Up" : "Login"}
+                    color={Colors.primary}
+                    onPress={authHandler}
+                  />
+                </View>
+                <View style={styles.buttonContainer}>
+                  <Button
+                    title={`Switch to ${isSignup ? "Login" : "Sign Up"}`}
+                    color={Colors.accent}
+                    onPress={() => {
+                      setIsSignup((prevState) => !prevState);
+                    }}
+                  />
+                </View>
+              </View>
+            )}
           </ScrollView>
         </Card>
       </LinearGradient>
@@ -160,13 +165,15 @@ const AuthScreen = (props) => {
   );
 };
 
-AuthScreen.navigationOptions = {
+export const screenOptions = {
   headerTitle: "Authenticate",
 };
 
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    // justifyContent: "center",
+    // alignItems: "center",
   },
   gradient: {
     flex: 1,
@@ -178,6 +185,9 @@ const styles = StyleSheet.create({
     maxWidth: 400,
     maxHeight: 400,
     padding: 20,
+  },
+  activityIndicatorStyle: {
+    marginTop: 10,
   },
   buttonContainer: {
     marginTop: 10,

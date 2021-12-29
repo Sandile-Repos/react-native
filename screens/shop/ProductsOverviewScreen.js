@@ -24,14 +24,6 @@ const ProductsOverviewScreen = (props) => {
   const products = useSelector((state) => state.products.availableProducts);
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const loadProducts = async () => {
-  //     setIsLoading(true);
-  //     await dispatch(productsActions.fetchProducts());
-  //     setIsLoading(false);
-  //   };
-  //   loadProducts();
-  // }, [dispatch]);
   const loadProducts = useCallback(async () => {
     setError(null);
     setIsRefreshing(true);
@@ -44,13 +36,10 @@ const ProductsOverviewScreen = (props) => {
   }, [dispatch, setIsRefreshing, setError]);
 
   useEffect(() => {
-    const willFocusSub = props.navigation.addListener(
-      "willFocus",
-      loadProducts
-    );
+    const unsubsribe = props.navigation.addListener("focus", loadProducts);
 
     return () => {
-      willFocusSub.remove();
+      unsubsribe();
     };
   }, [loadProducts]);
 
@@ -131,11 +120,10 @@ const ProductsOverviewScreen = (props) => {
     />
   );
 };
-
-ProductsOverviewScreen.navigationOptions = (navData) => {
+export const screenOptions = (navData) => {
   return {
     headerTitle: "All Products",
-    headerLeft: (
+    headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Menu"
@@ -146,7 +134,7 @@ ProductsOverviewScreen.navigationOptions = (navData) => {
         />
       </HeaderButtons>
     ),
-    headerRight: (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Cart"
