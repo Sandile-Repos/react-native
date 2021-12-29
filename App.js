@@ -18,8 +18,6 @@ const rootReducer = combineReducers({
   auth: authReducer,
 });
 
-//Can remove composeWithDevTools when deploying
-// const store = createStore(rootReducer, composeWithDevTools());
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 
 const fetchFonts = () => {
