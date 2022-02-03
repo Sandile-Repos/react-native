@@ -29,9 +29,9 @@ const LocationPicker = (props) => {
   }, [mapPickedLocation, onLocationPicked]);
 
   const verifyPermissions = async () => {
-    const result = await Permissions.askAsync(Permissions.LOCATION);
-    // const result = await Location.requestForegroundPermissionsAsync();// SDk 42
+    // const result = await Permissions.askAsync(Permissions.LOCATION);
     // const result = await Location.requestPermissionsAsync(); // SDk 40
+    const result = await Location.requestForegroundPermissionsAsync(); // SDk 42
     if (result.status !== "granted") {
       Alert.alert(
         "Insufficient permissions!",

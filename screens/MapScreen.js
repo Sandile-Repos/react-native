@@ -48,6 +48,8 @@ const MapScreen = (props) => {
   let markerCoordinates;
 
   if (selectedLocation) {
+    console.log("selectedLocation");
+    console.log(selectedLocation);
     markerCoordinates = {
       latitude: selectedLocation.lat,
       longitude: selectedLocation.lng,
@@ -74,7 +76,7 @@ MapScreen.navigationOptions = (navData) => {
     return {};
   }
   return {
-    headerRight: (
+    headerRight: () => (
       <TouchableOpacity style={styles.headerButton} onPress={saveFn}>
         <Text style={styles.headerButtonText}>Save</Text>
       </TouchableOpacity>
