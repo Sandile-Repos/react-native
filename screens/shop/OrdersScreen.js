@@ -15,7 +15,7 @@ import OrderItem from "../../components/shop/OrderItem";
 import * as ordersActions from "../../store/actions/orders";
 import Colors from "../../constant/Colors";
 
-const OrdersScreen = (props) => {
+const OrdersScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const orders = useSelector((state) => state.orders.orders);

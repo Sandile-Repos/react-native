@@ -15,7 +15,7 @@ import * as cartActions from "../../store/actions/cart";
 import * as ordersActions from "../../store/actions/orders";
 import Card from "../../components/UI/Card";
 
-const CartScreen = (props) => {
+const CartScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const cartTotalAmount = useSelector((state) => state.cart.totalAmount);
@@ -48,8 +48,7 @@ const CartScreen = (props) => {
         <Text style={styles.summaryText}>
           Total:{" "}
           <Text style={styles.amount}>
-            {"$"}
-            {Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
+            R{Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
           </Text>
         </Text>
         {isLoading ? (

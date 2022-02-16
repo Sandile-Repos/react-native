@@ -92,7 +92,7 @@ export const login = (email, password) => {
     }
 
     const resData = await response.json();
-    console.log(resData);
+    console.log("login", resData);
     dispatch(
       authenticate(
         resData.localId,

@@ -75,7 +75,7 @@ export const OrdersNavigator = () => {
   return (
     <OrdersStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <OrdersStackNavigator.Screen
-        name="Orders"
+        name="Orders Made"
         component={OrdersScreen}
         options={ordersScreenOptions}
       />
@@ -101,6 +101,28 @@ export const AdminNavigator = () => {
     </AdminStackNavigator.Navigator>
   );
 };
+
+// function CustomDrawerContent(props) {
+//   return (
+//     <DrawerContentScrollView {...props}>
+//       <DrawerItemList {...props} />
+//       <DrawerItem label="Help" onPress={() => alert("Link to help")} />
+//     </DrawerContentScrollView>
+//   );
+// }
+
+// const Drawer = createDrawerNavigator();
+
+// function MyDrawer() {
+//   return (
+//     <Drawer.Navigator
+//       drawerContent={(props) => <CustomDrawerContent {...props} />}
+//     >
+//       <Drawer.Screen name="Feed" component={Feed} />
+//       <Drawer.Screen name="Article" component={Article} />
+//     </Drawer.Navigator>
+//   );
+// }
 
 const ShopDrawerNavigator = createDrawerNavigator();
 export const ShopNavigator = () => {

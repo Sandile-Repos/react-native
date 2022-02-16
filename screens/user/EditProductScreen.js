@@ -149,7 +149,7 @@ const EditProductScreen = (props) => {
   return (
     <KeyboardAvoidingView //avoid keyboard from blocking inputs
       style={{ flex: 1 }}
-      behavior="padding"
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
       keyboardVerticalOffset={100}
     >
       <ScrollView>
@@ -212,7 +212,6 @@ const EditProductScreen = (props) => {
 };
 
 export const screenOptions = (navData) => {
-  // const submitFn = navData.route.params.submit ? navData.route.params.submit: null;
   const routeParams = navData.route.params ? navData.route.params : {};
   return {
     headerTitle: routeParams.productId ? "Edit Product" : "Add Product",

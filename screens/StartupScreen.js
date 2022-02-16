@@ -10,27 +10,28 @@ const StartupScreen = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const tryLogin = async () => {
-      const userData = await AsyncStorage.getItem("userData");
-      if (!userData) {
-        dispatch(authActions.setDidTryAL());
-        return;
-      }
-      const transformedData = JSON.parse(userData);
-      const { token, userId, expiryDate } = transformedData;
-      const expirationDate = new Date(expiryDate);
+    setTimeout(() => {
+      const tryLogin = async () => {
+        const userData = await AsyncStorage.getItem("userData");
+        if (!userData) {
+          dispatch(authActions.setDidTryAL());
+          return;
+        }
+        const transformedData = JSON.parse(userData);
+        const { token, userId, expiryDate } = transformedData;
+        const expirationDate = new Date(expiryDate);
 
-      if (expirationDate <= new Date() || !token || !userId) {
-        dispatch(authActions.setDidTryAL());
-        return;
-      }
+        if (expirationDate <= new Date() || !token || !userId) {
+          dispatch(authActions.setDidTryAL());
+          return;
+        }
 
-      const expirationTime = expirationDate.getTime() - new Date().getTime();
+        const expirationTime = expirationDate.getTime() - new Date().getTime();
 
-      dispatch(authActions.authenticate(userId, token, expirationTime));
-    };
-
-    tryLogin();
+        dispatch(authActions.authenticate(userId, token, expirationTime));
+      };
+      tryLogin();
+    }, 500);
   }, [dispatch]);
 
   return (

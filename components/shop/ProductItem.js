@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback,
   Platform,
+  Pressable,
 } from "react-native";
 
 import Card from "../UI/Card";
@@ -25,21 +26,28 @@ const ProductItem = (props) => {
         instead of the background. This is useful if one of your child views has
         a background of its own, or you're e.g. displaying images, and you don't
         want the ripple to be covered by them. */}
-        <TouchableCmp onPress={props.onSelect} useForeground>
+        <Pressable
+          android_ripple={{
+            foreground: true,
+            color: "rgba(0,0,0,0.1)",
+            borderless: true,
+            // radius: 2,
+          }}
+          onPress={props.onSelect}
+        >
+          {/* <TouchableCmp onPress={props.onSelect} useForeground> */}
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: props.image }} />
             </View>
             <View style={styles.details}>
               <Text style={styles.title}>{props.title}</Text>
-              <Text style={styles.price}>
-                {"$"}
-                {props.price.toFixed(2)}
-              </Text>
+              <Text style={styles.price}>R{props.price.toFixed(2)}</Text>
             </View>
             <View style={styles.actions}>{props.children}</View>
           </View>
-        </TouchableCmp>
+          {/* </TouchableCmp> */}
+        </Pressable>
       </View>
     </Card>
   );
@@ -76,7 +84,7 @@ const styles = StyleSheet.create({
     marginVertical: 2,
   },
   price: {
-    fontFamily: "open-sans",
+    fontFamily: "open-sans-bold",
     fontSize: 14,
     color: "#888",
   },
